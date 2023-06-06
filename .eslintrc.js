@@ -6,7 +6,8 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "@react-native-community"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -18,5 +19,12 @@ module.exports = {
         "react"
     ],
     "rules": {
+        semi: ['error', 'never'],
+        'comma-dangle': [2, 'never'],
+        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+        'no-use-before-define': [
+            'error',
+            { functions: true, classes: true, variables: false }
+        ]
     }
 }
