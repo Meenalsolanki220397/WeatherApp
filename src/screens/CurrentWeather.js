@@ -2,6 +2,7 @@
 import React from 'react'
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons'
+import RowText from '../components/RowText'
 
 const CurrentWeather = () => {
     return (
@@ -12,15 +13,25 @@ const CurrentWeather = () => {
                 <Text style={styles.feels}>Current Weather</Text>
                 <Text style={styles.container.temp}>6</Text>
                 <Text style={styles.feels}>Feels like 5</Text>
-                <View style={styles.highLowWrapper}>
-                    <Text style={styles.highLowWrapper.highLow}>High: 6</Text>
-                    <Text style={styles.highLowWrapper.highLow}>Low: 4</Text>
-                </View>
+                <RowText containerStyle={styles.highLowWrapper}
+                    messageOneStyle={styles.highLowWrapper.highLow}
+                    messageTwoStyle={styles.highLowWrapper.highLow}
+                    messageOne={'High: 8'}
+                    messageTwo={'Low: 6'}
+                />
             </View>
-            <View style={styles.footer}>
+            <RowText containerStyle={styles.footer}
+                messageOneStyle={styles.footerText}
+                messageTwoStyle={styles.footerText}
+                messageOne={'Its sunny'}
+                messageTwo={'Its perfect t-shirt weather'}
+            />
+
+            {/* Code refactoring following components structure
+                <View style={styles.footer}>
                 <Text style={styles.footer.t}>Its sunny</Text>
                 <Text style={styles.footer.t}>Its perfect t-shirt weather</Text>
-            </View>
+            </View> */}
         </SafeAreaView>
     )
 }
@@ -56,10 +67,12 @@ const styles = StyleSheet.create({
     footer: {
         fontSize: 30,
         alignItems: 'center',
-        t: {
-            fontWeight: 900
-        }
+        justifyContent: 'center'
+    },
+    footerText: {
+        fontWeight: 900
     }
+
 })
 
 export default CurrentWeather

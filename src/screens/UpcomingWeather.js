@@ -1,7 +1,11 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import { SafeAreaView, View, Text, StyleSheet, FlatList, StatusBar } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+import {
+    SafeAreaView, Text, StyleSheet, FlatList,
+    StatusBar, ImageBackground
+} from 'react-native'
+import ListItem from '../components/ListItem'
+
 const DATA =
 
     [
@@ -43,32 +47,40 @@ const DATA =
         }]
 
 // single item in lst to be rendered will follow this format
-const Item = (props) => {
-    const { dt_txt, min, max, condition } = props // destructering props
-    return (
-        <View style={style.item}>
-            <Feather name={'sun'} size={50} color={'white'} />
-            <Text style={style.date}>{dt_txt}</Text>
-            <Text style={style.temp}>{min}</Text>
-            <Text style={style.temp}>{max}</Text>
+// const Item = (props) => {
+//     const { dt_txt, min, max, condition } = props // destructering props
+//     return (
+//         <View style={style.item}>
+//             <Feather name={'sun'} size={50} color={'white'} />
+//             <Text style={style.date}>{dt_txt}</Text>
+//             <Text style={style.temp}>{min}</Text>
+//             <Text style={style.temp}>{max}</Text>
 
-        </View>
-    )
-}
+//         </View>
+//     )
+// }
 
 const UpcomingWeather = () => {
 
     // making custom render function which is passed to flat list
     const render = ({ item }) => {
         return (
-            <Item dt_txt={item.dt_txt} min={item.main.temp_min}
+            <ListItem dt_txt={item.dt_txt} min={item.main.temp_min}
                 max={item.main.temp_max} condition={item.weather[0].description} />
         )
     }
     return (
         <SafeAreaView style={style.wrapper}>
-            <View>
+            <ImageBackground style={style.image}
+                source={require('../../assets/upcomingWeather-backgound.jpg')}>
+
                 <Text>Upcoming Weather</Text>
+                {/* 
+                using static image example
+                but we eventually want to set background image
+                so we are using imagebackground component
+                <Image style={style.image}
+                    source={require('../../assets/upcomingWeather-backgound.jpg')} /> */}
                 <FlatList
                     data={DATA}
                     // renderItem accepts call back function which iterates
@@ -76,7 +88,7 @@ const UpcomingWeather = () => {
                     renderItem={render}
                     keyExtractor={(item) => item.dt_txt}
                 />
-            </View>
+            </ImageBackground>
         </SafeAreaView>
     )
 }
@@ -104,6 +116,10 @@ const style = StyleSheet.create({
     date: {
         padding: 5,
         fontSize: 12
+    },
+    image: {
+        flex: 1,
+        justifyContent: 'center'
     }
 })
 
