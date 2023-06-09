@@ -97,7 +97,7 @@ const style = StyleSheet.create({
     wrapper: {
         flex: 1,
         backgroundColor: 'red',
-        marginTop: StatusBar.currentHeight || 0
+        //marginTop: StatusBar.currentHeight || 0
     },
     item: {
         padding: 20,

@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'pink'
     },
     container: {
-        marginTop: 50,
+        //marginTop: 50,
         flex: 1,
         alignItems: 'center',
         // nexted json object in styling
